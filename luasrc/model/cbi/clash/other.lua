@@ -25,7 +25,7 @@ o:value("24", translate("Every 24 Hours"))
 o.description = translate("Daily Server subscription update time. Only update config in use")
 
 o = s:option(Button, "Apply")
-o.title = translate("Save & Apply")
+o.title = luci.util.pcdata(translate("Save & Apply"))
 o.inputtitle = translate("Save & Apply")
 o.inputstyle = "apply"
 o.write = function()
@@ -52,7 +52,7 @@ o.description = translate("Clear Log Time")
 
 o=s:option(Button,"clear_clear")
 o.inputtitle = translate("Save & Apply")
-o.title = translate("Save & Apply")
+o.title = luci.util.pcdata(translate("Save & Apply"))
 o.inputstyle = "reload"
 o.write = function()
   m.uci:commit("clash")
@@ -62,22 +62,9 @@ end
 
 
 w = Map("clash")
-s = w:section(TypedSection, "clash" , translate("New Config(Rename fields)"))
+s = w:section(TypedSection, "clash" , translate("Load Groups"))
 s.anonymous = true
 
-
-o = s:option(ListValue, "new_conff", translate("New Config(Rename fields)"))
-o:value("0", translate("Disable"))
-o:value("1", translate("Enable"))
-o.description = translate("https://github.com/Dreamacro/clash/commit/88d8f937938d7aba774b1af638df6910b1a1a14d")
-
-o=s:option(Button,"nwewcf")
-o.inputtitle = translate("Save & Apply")
-o.title = translate("Save & Apply")
-o.inputstyle = "reload"
-o.write = function()
-  w.uci:commit("clash")
-end
 
 o = s:option(Button, "Load") 
 o.inputtitle = translate("Load Groups")
